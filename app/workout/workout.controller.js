@@ -8,7 +8,7 @@ export const addWorkout = asyncHandler(async (req, res) => {
 		data: {
 			name,
 			exercises: {
-				connect: exerciseIds.map(id => ({
+				set: exerciseIds.map(id => ({
 					id: +id
 				}))
 			}
@@ -27,6 +27,11 @@ export const getWorkout = asyncHandler(async (req, res) => {
 			exercises: true
 		}
 	})
+
+	if (!workout) {
+		res.status(404)
+		throw new Error('Workout not found')
+	}
 	const minutes = Math.ceil(workout.exercises.length * 3.7)
 	res.json({ ...workout, minutes })
 })
@@ -44,7 +49,7 @@ export const updateWorkout = asyncHandler(async (req, res) => {
 			},
 			data: {
 				exercises: {
-					connect: exerciseIds.map(id => ({
+					set: exerciseIds.map(id => ({
 						id: +id
 					}))
 				}
