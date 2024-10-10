@@ -6,14 +6,16 @@ import {
 	addWorkout,
 	deleteWorkout,
 	getAllWorkout,
+	getWorkout,
 	updateWorkout
 } from './workout.controller.js'
 
 const router = express.Router()
 
-router.route('/workout').post(protect, addWorkout)
-router.route('/workout').get(protect, getAllWorkout)
-router.route('/workout/:id').put(protect, updateWorkout)
-router.route('/workout/:id').delete(protect, deleteWorkout)
+router.route('/workouts').post(protect, addWorkout)
+router.route('/workouts/:id').get(protect, getWorkout)
+router.route('/workouts').get(protect, getAllWorkout)
+router.route('/workouts/:id').put(protect, updateWorkout)
+router.route('/workouts/:id').delete(protect, deleteWorkout)
 
 export default router

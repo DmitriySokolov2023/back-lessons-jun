@@ -10,6 +10,7 @@ import authRoutes from './app/auth/auth.routes.js'
 import exerciseRoutes from './app/exercise/exercise.route.js'
 import { prisma } from './app/prisma.js'
 import userRoutes from './app/user/user.routes.js'
+import workoutRoutes from './app/workout/workout.route.js'
 
 const app = express()
 
@@ -19,7 +20,7 @@ async function main() {
 
 	const __dirname = path.resolve()
 	app.use('/uploads', express.static(path.join(__dirname, '/uploads/')))
-	app.use('/api', authRoutes, userRoutes, exerciseRoutes)
+	app.use('/api', authRoutes, userRoutes, exerciseRoutes, workoutRoutes)
 
 	app.use(notFound)
 	app.use(errorHandler)
