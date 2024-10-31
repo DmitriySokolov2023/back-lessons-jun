@@ -3,11 +3,11 @@ import asyncHandler from 'express-async-handler'
 import { prisma } from '../prisma.js'
 
 export const addExercise = asyncHandler(async (req, res) => {
-	const { name, times, image } = req.body
+	const { name, times, iconPath } = req.body
 	const exercise = await prisma.exercise.create({
 		data: {
 			name,
-			image,
+			iconPath,
 			times
 		}
 	})
@@ -26,7 +26,7 @@ export const getAllExercise = asyncHandler(async (req, res) => {
 })
 
 export const updateExercise = asyncHandler(async (req, res) => {
-	const { name, times, image } = req.body
+	const { name, times, iconPath } = req.body
 	try {
 		const exercise = await prisma.exercise.update({
 			where: {
@@ -35,7 +35,7 @@ export const updateExercise = asyncHandler(async (req, res) => {
 			data: {
 				name,
 				times,
-				image
+				iconPath
 			}
 		})
 

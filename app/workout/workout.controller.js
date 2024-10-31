@@ -8,11 +8,12 @@ export const addWorkout = asyncHandler(async (req, res) => {
 		data: {
 			name,
 			exercises: {
-				set: exerciseIds.map(id => ({
+				connect: exerciseIds.map(id => ({
 					id: +id
 				}))
 			}
-		}
+		},
+		include: { exercises: true }
 	})
 
 	res.json(workout)
